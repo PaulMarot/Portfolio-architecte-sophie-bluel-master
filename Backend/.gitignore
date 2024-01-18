@@ -1,0 +1,42 @@
+node_modules
+
+!images/.gitkeep
+
+
+fetch("http://localhost:5678/api/works")
+​
+.then(response =>{
+    return response.json()
+})
+.then(data =>{
+    for(let item of data){
+        createWork(item.imageUrl, item.title)
+    }
+})
+​
+const gallery = document.querySelector(".gallery")
+​
+​
+function createWork(imageUrl, title){
+​
+    const singleWork = `<figure>
+    <img src="${imageUrl}" alt="${title}">
+    <figcaption>${title}>
+</figure>`
+gallery.innerHTML += singleWork
+    /*const singleWork  = document.createElement("figure")
+​
+    const imageWork = document.createElement("img")
+    imageWork.setAttribute("src",imageUrl)
+    imageWork.setAttribute("alt", title)
+​
+    singleWork.appendChild(imageWork)
+​
+    
+    const titre = document.createElement("figcaption")
+​
+    titre.innerText = title
+    singleWork.appendChild(titre)
+​
+    gallery.appendChild(singleWork)*/
+}
